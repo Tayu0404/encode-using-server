@@ -11,4 +11,10 @@
     <PackageReference Include="SSH.NET" Version="2016.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ssh.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

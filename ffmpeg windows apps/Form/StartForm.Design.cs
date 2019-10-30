@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 partial class StartForm : Form {
-	public StartForm() {
+	void InitializeComponent() {
 		const int margen = 15;
 		int curW = 0, curH = 0;
 
@@ -11,18 +11,19 @@ partial class StartForm : Form {
 			"Password", "Privete Key"
 		};
 	
-		this.sshHostNameLabel   = new Label();
-		this.sshHostName        = new TextBox();
-		this.sshPortLabel       = new Label();
-		this.sshPort            = new TextBox();
-		this.sshUserNameLabel   = new Label();
-		this.sshUserName        = new TextBox();
-		this.sshPassOrKeySwitch = new RadioButton[2];
-		this.sshPasswordLabel   = new Label();
-		this.sshPassword        = new TextBox();
-		this.sshPriveteKeyLabel = new Label();
-		this.sshPriveteKey      = new Button();
-		this.acceptButton       = new Button();
+		this.sshHostNameLabel    = new Label();
+		this.sshHostName         = new TextBox();
+		this.sshPortLabel        = new Label();
+		this.sshPort             = new TextBox();
+		this.sshUserNameLabel    = new Label();
+		this.sshUserName         = new TextBox();
+		this.sshPassOrKeySwitch  = new RadioButton[2];
+		this.sshPasswordLabel    = new Label();
+		this.sshPassword         = new TextBox();
+		this.sshPriveteKeyLabel  = new Label();
+		this.sshPriveteKey       = new TextBox();
+		this.sshPriveteKeySelect = new Button();
+		this.acceptButton        = new Button();
 
 		curW = curH = margen;
 
@@ -85,11 +86,15 @@ partial class StartForm : Form {
 		this.sshPassword.Size = new Size(175, 25);
 		this.sshPassword.Location = new Point(curW, curH);
 
-		this.sshPriveteKey.Text = "Select File";
-		this.sshPriveteKey.Size = new Size(175, 25);
+		this.sshPriveteKey.Size = new Size(125, 25);
 		this.sshPriveteKey.Location = new Point(curW, curH);
 		this.sshPriveteKey.Visible = false;
-		this.sshPriveteKey.Click += new EventHandler(sshPriveteKeyClick);
+
+		this.sshPriveteKeySelect.Text = "Select";
+		this.sshPriveteKeySelect.Size = new Size(50, 25);
+		this.sshPriveteKeySelect.Location = new Point(curW + this.sshPriveteKey.Size.Width, curH);
+		this.sshPriveteKeySelect.Visible = false;
+		this.sshPriveteKeySelect.Click += new EventHandler(sshPriveteKeyClick);
 
 		curH += sshPriveteKey.Size.Height;
 
@@ -114,6 +119,7 @@ partial class StartForm : Form {
 		this.Controls.Add(this.sshPassword);
 		this.Controls.Add(this.sshPriveteKeyLabel);
 		this.Controls.Add(this.sshPriveteKey);
+		this.Controls.Add(this.sshPriveteKeySelect);
 		this.Controls.Add(this.acceptButton);
 
 		this.AcceptButton = this.acceptButton;
