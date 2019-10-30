@@ -2,29 +2,24 @@
 using System.Windows.Forms;
 
 partial class StartForm : Form {
-	Label sshHostNameLabel, sshPortLabel, sshUserNameLabel, sshPasswordLabel, sshPriveteKeyLabel;
+	Label sshHostNameLabel, sshPortLabel, sshUserNameLabel;
 	TextBox sshHostName, sshPort, sshUserName, sshPassword, sshPriveteKey;
 	Button sshPriveteKeySelect, acceptButton;
-	RadioButton[] sshPassOrKeySwitch;
+	ComboBox sshPassOrKeySwitch;
 
-	public StartForm(){
+	public StartForm() {
 		InitializeComponent();
 	}
 
-	void sshPassOrKeySwitchChenged(object sender, EventArgs e) {
-		RadioButton PassOrkeySwitch = sender as RadioButton;
-		if (PassOrkeySwitch.Text == "Password") {
-			this.sshPriveteKeyLabel.Visible  = false;
-			this.sshPriveteKey.Visible       = false;
+	void sshPassOrKeySwitchChenged(object sender, EventArgs e) { 
+		if (this.sshPassOrKeySwitch.Text == "Password") {
+			this.sshPriveteKey.Visible = false;
 			this.sshPriveteKeySelect.Visible = false;
-			this.sshPasswordLabel.Visible    = true;
-			this.sshPassword.Visible         = true;
+			this.sshPassword.Visible = true;
 		}
-		if (PassOrkeySwitch.Text == "Privete Key") {
-			this.sshPasswordLabel.Visible    = false;
-			this.sshPassword.Visible         = false;
-			this.sshPriveteKeyLabel.Visible  = true;
-			this.sshPriveteKey.Visible       = true;
+		if (this.sshPassOrKeySwitch.Text == "Privete Key") {
+			this.sshPassword.Visible = false;
+			this.sshPriveteKey.Visible = true;
 			this.sshPriveteKeySelect.Visible = true;
 		}
 	}

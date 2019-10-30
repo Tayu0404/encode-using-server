@@ -17,10 +17,8 @@ partial class StartForm : Form {
 		this.sshPort             = new TextBox();
 		this.sshUserNameLabel    = new Label();
 		this.sshUserName         = new TextBox();
-		this.sshPassOrKeySwitch  = new RadioButton[2];
-		this.sshPasswordLabel    = new Label();
+		this.sshPassOrKeySwitch  = new ComboBox();
 		this.sshPassword         = new TextBox();
-		this.sshPriveteKeyLabel  = new Label();
 		this.sshPriveteKey       = new TextBox();
 		this.sshPriveteKeySelect = new Button();
 		this.acceptButton        = new Button();
@@ -60,28 +58,17 @@ partial class StartForm : Form {
 
 		curH += sshUserName.Size.Height;
 
-		for (int i = 0; i < this.sshPassOrKeySwitch.Length; i++) {
-			this.sshPassOrKeySwitch[i] = new RadioButton {
-				Text = sshPassOrKeySwitchText[i],
-				Size = new Size(175, 25),
-				Location = new Point(curW, curH),
-			};
-			this.sshPassOrKeySwitch[i].CheckedChanged += new EventHandler(sshPassOrKeySwitchChenged);
+		this.sshPassOrKeySwitch.Items.AddRange(new object[]{
+			"Password",
+			"Privete Key",
+		});
+		this.sshPassOrKeySwitch.SelectedIndex = 0;
+		this.sshPassOrKeySwitch.Size = new Size(175, 25);
+		this.sshPassOrKeySwitch.Location = new Point(curW, curH);
+		this.sshPassOrKeySwitch.DropDownStyle = ComboBoxStyle.DropDownList;
+		this.sshPassOrKeySwitch.SelectedIndexChanged += new EventHandler(sshPassOrKeySwitchChenged);
 
-			curH += sshPort.Size.Height;
-		}
-		this.sshPassOrKeySwitch[0].Checked = true;
-
-		this.sshPasswordLabel.Text = "Password";
-		this.sshPasswordLabel.Size = new Size(175, 25);
-		this.sshPasswordLabel.Location = new Point(curW, curH);
-
-		this.sshPriveteKeyLabel.Text = "Privete Key";
-		this.sshPriveteKeyLabel.Size = new Size(175, 25);
-		this.sshPriveteKeyLabel.Location = new Point(curW, curH);
-		this.sshPriveteKeyLabel.Visible = false;
-
-		curH += sshPriveteKeyLabel.Size.Height;
+		curH += sshPassOrKeySwitch.Size.Height;
 
 		this.sshPassword.Size = new Size(175, 25);
 		this.sshPassword.Location = new Point(curW, curH);
@@ -114,10 +101,8 @@ partial class StartForm : Form {
 		this.Controls.Add(this.sshPort);
 		this.Controls.Add(this.sshUserNameLabel);
 		this.Controls.Add(this.sshUserName);
-		this.Controls.AddRange(this.sshPassOrKeySwitch);
-		this.Controls.Add(this.sshPasswordLabel);
+		this.Controls.Add(this.sshPassOrKeySwitch);
 		this.Controls.Add(this.sshPassword);
-		this.Controls.Add(this.sshPriveteKeyLabel);
 		this.Controls.Add(this.sshPriveteKey);
 		this.Controls.Add(this.sshPriveteKeySelect);
 		this.Controls.Add(this.acceptButton);
