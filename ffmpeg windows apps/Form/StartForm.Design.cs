@@ -19,8 +19,8 @@ partial class StartForm : Form {
 		this.sshUserName         = new TextBox();
 		this.sshPassOrKeySwitch  = new ComboBox();
 		this.sshPassword         = new TextBox();
-		this.sshPriveteKey       = new TextBox();
-		this.sshPriveteKeySelect = new Button();
+		this.sshPrivateKey       = new TextBox();
+		this.sshPrivateKeySelect = new Button();
 		this.acceptButton        = new Button();
 
 		curW = curH = margen;
@@ -73,17 +73,17 @@ partial class StartForm : Form {
 		this.sshPassword.Size = new Size(175, 25);
 		this.sshPassword.Location = new Point(curW, curH);
 
-		this.sshPriveteKey.Size = new Size(125, 25);
-		this.sshPriveteKey.Location = new Point(curW, curH);
-		this.sshPriveteKey.Visible = false;
+		this.sshPrivateKey.Size = new Size(125, 25);
+		this.sshPrivateKey.Location = new Point(curW, curH);
+		this.sshPrivateKey.Visible = false;
 
-		this.sshPriveteKeySelect.Text = "Select";
-		this.sshPriveteKeySelect.Size = new Size(50, 25);
-		this.sshPriveteKeySelect.Location = new Point(curW + this.sshPriveteKey.Size.Width, curH);
-		this.sshPriveteKeySelect.Visible = false;
-		this.sshPriveteKeySelect.Click += new EventHandler(sshPriveteKeyClick);
+		this.sshPrivateKeySelect.Text = "Select";
+		this.sshPrivateKeySelect.Size = new Size(50, 25);
+		this.sshPrivateKeySelect.Location = new Point(curW + this.sshPrivateKey.Size.Width, curH);
+		this.sshPrivateKeySelect.Visible = false;
+		this.sshPrivateKeySelect.Click += new EventHandler(sshPriveteKeyClick);
 
-		curH += sshPriveteKey.Size.Height;
+		curH += sshPrivateKey.Size.Height;
 
 		this.acceptButton.Text = "Accept";
 		this.acceptButton.DialogResult = DialogResult.OK;
@@ -103,8 +103,8 @@ partial class StartForm : Form {
 		this.Controls.Add(this.sshUserName);
 		this.Controls.Add(this.sshPassOrKeySwitch);
 		this.Controls.Add(this.sshPassword);
-		this.Controls.Add(this.sshPriveteKey);
-		this.Controls.Add(this.sshPriveteKeySelect);
+		this.Controls.Add(this.sshPrivateKey);
+		this.Controls.Add(this.sshPrivateKeySelect);
 		this.Controls.Add(this.acceptButton);
 
 		this.AcceptButton = this.acceptButton;

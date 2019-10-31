@@ -3,34 +3,46 @@ using System.Collections.Generic;
 using System.Text;
 using Renci.SshNet;
 
-public class ssh {
-	public ConnectionInfo cnctInfo { private set; get; }
-	public void constructSSH(string hostName, int port, string userName, string password, string priveteKey) {
-		var passAuth = new PasswordAuthenticationMethod(userName, password);
-		var keyAuth = new PrivateKeyAuthenticationMethod(userName, new PrivateKeyFile[]{
-			new PrivateKeyFile(priveteKey)
+public class Ssh {
+	private ConnectionInfo connectionInfo;
+	private string hostName;
+	private int port;
+	private string userName;
+	private string password;
+	private string privateKey;
+	
+	public ConnectionInfo ConnectionInfo {
+		get {
+			var passAuth = new PasswordAuthenticationMethod(this.userName, this.password);
+			var keyAuth = new PrivateKeyAuthenticationMethod(this.userName, new PrivateKeyFile[]{
+			new PrivateKeyFile(this.privateKey)
 		});
-		cnctInfo = new ConnectionInfo(hostName, port, userName, new AuthenticationMethod[]{
+			connectionInfo = new ConnectionInfo(hostName, port, userName, new AuthenticationMethod[]{
 			passAuth,
 			keyAuth
 		});
-	}
-
-	public void ConnectSSH(string hostName, int port, string userName, string password, string priveteKey) {
-		constructSSH(hostName, port, userName, password, priveteKey);
-		using (var ssh = new SshClient(cnctInfo)) {
-			ssh.Connect();
-			if (ssh.IsConnected) {
-				using (var cmd = ssh.CreateCommand("ls")) {
-					Console.WriteLine(cmd.Execute());
-					Console.WriteLine(cmd.Error);
-					Console.WriteLine(cmd.Result);
-					Console.WriteLine(cmd.ExitStatus);
-				}
-			} else {
-				Console.WriteLine("Connection Error");
-				return;
-			}
+			return connectionInfo;
 		}
+	}
+	public String HostName {
+		set { hostName = value; }
+		get { return hostName; }
+	}
+	public int Port {
+		set { port = value; }
+		get { return port; }
+	}
+	public string UserName {
+		set { userName = value; }
+		get { return userName; }
+	}
+	public string Password {
+		set { password = value; }
+		get { return password; }
+	}
+	
+	public string PrivateKey {
+		set { privateKey = value; }
+		get { return privateKey; }
 	}
 }

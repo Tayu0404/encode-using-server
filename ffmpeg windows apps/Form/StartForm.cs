@@ -3,8 +3,8 @@ using System.Windows.Forms;
 
 partial class StartForm : Form {
 	Label sshHostNameLabel, sshPortLabel, sshUserNameLabel;
-	TextBox sshHostName, sshPort, sshUserName, sshPassword, sshPriveteKey;
-	Button sshPriveteKeySelect, acceptButton;
+	TextBox sshHostName, sshPort, sshUserName, sshPassword, sshPrivateKey;
+	Button sshPrivateKeySelect, acceptButton;
 	ComboBox sshPassOrKeySwitch;
 
 	public StartForm() {
@@ -13,14 +13,14 @@ partial class StartForm : Form {
 
 	void sshPassOrKeySwitchChenged(object sender, EventArgs e) { 
 		if (this.sshPassOrKeySwitch.Text == "Password") {
-			this.sshPriveteKey.Visible = false;
-			this.sshPriveteKeySelect.Visible = false;
+			this.sshPrivateKey.Visible = false;
+			this.sshPrivateKeySelect.Visible = false;
 			this.sshPassword.Visible = true;
 		}
 		if (this.sshPassOrKeySwitch.Text == "Privete Key") {
 			this.sshPassword.Visible = false;
-			this.sshPriveteKey.Visible = true;
-			this.sshPriveteKeySelect.Visible = true;
+			this.sshPrivateKey.Visible = true;
+			this.sshPrivateKeySelect.Visible = true;
 		}
 	}
 	
@@ -32,7 +32,7 @@ partial class StartForm : Form {
 
 		DialogResult result = selectPriveteKey.ShowDialog();
 		if (result == DialogResult.OK) {
-			this.sshPriveteKey.Text = selectPriveteKey.FileName;
+			this.sshPrivateKey.Text = selectPriveteKey.FileName;
 		}
 	}
 }
