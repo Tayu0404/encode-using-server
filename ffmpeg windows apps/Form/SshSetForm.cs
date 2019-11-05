@@ -11,6 +11,26 @@ partial class SshSetForm : Form {
 		get { return sshHostName.Text; }
 	}
 
+	public int SshPort {
+		get { return int.Parse(sshPort.Text); }
+	}
+
+	public string SshUserName {
+		get { return sshUserName.Text; }
+	}
+
+	public string SshPassword {
+		get { return sshPassword.Text; }
+	}
+
+	public string SshPrivateKey {
+		get { return sshPrivateKey.Text; }
+	}
+
+	public string SshPassOrKey {
+		get { return sshPassOrKeySwitch.Text; }
+	}
+
 	public SshSetForm() {
 		InitializeComponent();
 	}
@@ -21,7 +41,7 @@ partial class SshSetForm : Form {
 			this.sshPrivateKeySelect.Visible = false;
 			this.sshPassword.Visible = true;
 		}
-		if (this.sshPassOrKeySwitch.Text == "Privete Key") {
+		if (this.sshPassOrKeySwitch.Text == "Private Key") {
 			this.sshPassword.Visible = false;
 			this.sshPrivateKey.Visible = true;
 			this.sshPrivateKeySelect.Visible = true;

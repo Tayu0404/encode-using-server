@@ -10,17 +10,24 @@ public class Ssh {
 	private string userName;
 	private string password;
 	private string privateKey;
+	private string authPassOrKey;
 	
 	public ConnectionInfo ConnectionInfo {
 		get {
-			var passAuth = new PasswordAuthenticationMethod(this.userName, this.password);
-			var keyAuth = new PrivateKeyAuthenticationMethod(this.userName, new PrivateKeyFile[]{
-			new PrivateKeyFile(this.privateKey)
-		});
-			connectionInfo = new ConnectionInfo(hostName, port, userName, new AuthenticationMethod[]{
-			passAuth,
-			keyAuth
-		});
+			if (authPassOrKey == "Password") {
+				var Auth = new PasswordAuthenticationMethod(this.userName, this.password);
+				connectionInfo = new ConnectionInfo(hostName, port, userName, new AuthenticationMethod[]{
+					Auth
+				});
+			}
+			if (authPassOrKey == "Private Key") {
+				var Auth = new PrivateKeyAuthenticationMethod(this.userName, new PrivateKeyFile[]{
+					new PrivateKeyFile(this.privateKey,"")
+				}) ;
+				connectionInfo = new ConnectionInfo(hostName, port, userName, new AuthenticationMethod[]{
+					Auth
+				});
+			}
 			return connectionInfo;
 		}
 	}
@@ -44,5 +51,10 @@ public class Ssh {
 	public string PrivateKey {
 		set { privateKey = value; }
 		get { return privateKey; }
+	}
+
+	public string AuthPassOrKey {
+		set { authPassOrKey = value; }
+		get { return authPassOrKey; }
 	}
 }

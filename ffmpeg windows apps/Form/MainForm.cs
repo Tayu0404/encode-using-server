@@ -12,10 +12,16 @@ partial class MainForm : Form {
 		SshSetForm startForm = new SshSetForm();
 		DialogResult result = startForm.ShowDialog();
 		if (result == DialogResult.OK) {
-			
+			ssh.HostName = startForm.SshHostName;
+			ssh.Port = startForm.SshPort;
+			ssh.UserName = startForm.SshUserName;
+			ssh.Password = startForm.SshPassword;
+			ssh.PrivateKey = startForm.SshPrivateKey;
+			ssh.AuthPassOrKey = startForm.SshPassOrKey;
 		}
 		
 		using (var sshClient = new SshClient(ssh.ConnectionInfo)){
+			System.Diagnostics.Debug.WriteLine(sshClient);
 			sshClient.Connect();
 			if (sshClient.IsConnected) {
 				using (var cmd = sshClient.CreateCommand("ls")) {

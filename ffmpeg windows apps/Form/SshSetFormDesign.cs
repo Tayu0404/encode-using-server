@@ -61,7 +61,7 @@ partial class SshSetForm : Form {
 
 		this.sshPassOrKeySwitch.Items.AddRange(new object[]{
 			"Password",
-			"Privete Key",
+			"Private Key",
 		});
 		this.sshPassOrKeySwitch.SelectedIndex = 0;
 		this.sshPassOrKeySwitch.Size = new Size(175, 25);
