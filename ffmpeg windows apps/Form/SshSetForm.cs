@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
 
-partial class StartForm : Form {
-	Label sshHostNameLabel, sshPortLabel, sshUserNameLabel;
-	TextBox sshHostName, sshPort, sshUserName, sshPassword, sshPrivateKey;
-	Button sshPrivateKeySelect, acceptButton;
-	ComboBox sshPassOrKeySwitch;
+partial class SshSetForm : Form {
+	private Label sshHostNameLabel, sshPortLabel, sshUserNameLabel;
+	private TextBox sshHostName, sshPort, sshUserName, sshPassword, sshPrivateKey;
+	private Button sshPrivateKeySelect, acceptButton;
+	private ComboBox sshPassOrKeySwitch;
 
-	public StartForm() {
+	public string SshHostName {
+		get { return sshHostName.Text; }
+	}
+
+	public SshSetForm() {
 		InitializeComponent();
 	}
 
@@ -21,6 +25,12 @@ partial class StartForm : Form {
 			this.sshPassword.Visible = false;
 			this.sshPrivateKey.Visible = true;
 			this.sshPrivateKeySelect.Visible = true;
+		}
+	}
+
+	void sshPortKeyPress(object sender, KeyPressEventArgs e) {
+		if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b') {
+			e.Handled = true;
 		}
 	}
 	

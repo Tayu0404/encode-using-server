@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-partial class StartForm : Form {
+partial class SshSetForm : Form {
 	void InitializeComponent() {
 		const int margen = 15;
 		int curW = 0, curH = 0;
@@ -44,6 +44,7 @@ partial class StartForm : Form {
 
 		this.sshPort.Size = new Size(175, 25);
 		this.sshPort.Location = new Point(curW, curH);
+		this.sshPort.KeyPress += new KeyPressEventHandler(sshPortKeyPress);
 
 		curH += sshPort.Size.Height;
 

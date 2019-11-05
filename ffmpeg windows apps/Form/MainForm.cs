@@ -5,12 +5,16 @@ using Renci.SshNet;
 partial class MainForm : Form {
 	Button testButton;
 	public MainForm() {
-		StartForm startForm = new StartForm();
-		startForm.ShowDialog();
 		InitializeComponent();
 	}
 	void testButtonClick(object sender, EventArgs e) {
 		Ssh ssh = new Ssh();
+		SshSetForm startForm = new SshSetForm();
+		DialogResult result = startForm.ShowDialog();
+		if (result == DialogResult.OK) {
+			
+		}
+		
 		using (var sshClient = new SshClient(ssh.ConnectionInfo)){
 			sshClient.Connect();
 			if (sshClient.IsConnected) {
